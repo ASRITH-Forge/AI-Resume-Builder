@@ -8,9 +8,9 @@ const CallToAction = () => {
                 <button className="flex items-center gap-2 rounded-md py-3 px-5 bg-green-600 hover:bg-green-700 transition text-white">
                     <span>Get Started</span>
                     <svg xmlns="http://w3.org" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right">
-  <path d="M5 12h14" />
-  <path d="m12 5 7 7-7 7" />
-</svg>
+                   <path d="M5 12h14" />
+                      <path d="m12 5 7 7-7 7" />
+                    </svg>
 
                 </button>
             </div>
