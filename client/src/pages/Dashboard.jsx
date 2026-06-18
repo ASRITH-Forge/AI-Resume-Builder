@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { FilePenLineIcon, PencilIcon, PlusIcon, TrashIcon, UploadCloudIcon, XIcon } from 'lucide-react'
 import { dummyResumeData } from '../assets/assets'
+import { useNavigate } from 'react-router-dom'
 
 const Dashboard = () => {
   const colors=["#9333ea","#d97706","#dc2626","#0284c7","#16a34a"]
@@ -11,8 +12,17 @@ const Dashboard = () => {
   const [resume, setResume]=useState(null)
   const [editResumeId, setEditResumeId]=useState('')
 
+  const navigate = useNavigate()
+
   const loadAllResumes = async () => {
     setAllResumes(dummyResumeData)
+  }
+  
+  const createResume = async (event) => {
+    event.preventDefault()
+    setShowCreateResume(false)
+    navigate(`/app/builder/res123`)
+
   }
 
   useEffect(() => {
@@ -24,7 +34,7 @@ const Dashboard = () => {
         <p className='text-2xl font-medium mb-6 bg-gradient-to-r from-slate-600 to-bg-slate-700 bg-clip-text text-transparent sm:hidden'>Welcome, Asrith</p>
         
         <div className='flex gap-4'>
-          <button className='w-full bg-white sm:max-w-36 h-48 flex flex-col items-center justify-center rounded-lg gap-2 text-slate-600 border border-dashed border-slate-300 group hover:border-indigo-500 hover:shadow-lg transition-all duration-300 cursor-pointer'>
+          <button onClick={()=>setShowCreateResume(true)} className='w-full bg-white sm:max-w-36 h-48 flex flex-col items-center justify-center rounded-lg gap-2 text-slate-600 border border-dashed border-slate-300 group hover:border-indigo-500 hover:shadow-lg transition-all duration-300 cursor-pointer'>
             <PlusIcon className='size-11 transition-all duration-300 p-2.5 bg-gradient-to-br from-indigo-300 to-oindigo-500 text-white rounded-full'/>
             <p className='text-sm group-hover:text-indigo-600 transition-all duration-300'>Create Resume</p>
           </button>
@@ -55,7 +65,7 @@ const Dashboard = () => {
         </div>
          <div>
           {showCreateResume && (
-            <form onSubmit={createResume} className='fixed inset-0 bg-black/70 backdrop-blur bg-opacity-50 z-10 flex items-center justify-center'>
+            <form onSubmit={createResume} onClick={()=>setShowCreateResume(false)} className='fixed inset-0 bg-black/70 backdrop-blur bg-opacity-50 z-10 flex items-center justify-center'>
                <div onClick={e => e.stopPropagation()} className='relative bg-slate-50 border shadow-md rounded-lg w-full sm:max-w-md p-6'>
                 <h2 className='text-xl font-bold mb-4'>Create a Resume</h2>
                 <input type="text" placeholder="Enter resume title" className='w-full px-4 py-2 mb-4 focus:border-green-600 ring-green-600' required />
