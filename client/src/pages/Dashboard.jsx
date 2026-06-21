@@ -35,6 +35,14 @@ const editTitle = async (event) => {
   event.preventDefault()
 }
 
+
+const deleteResume = async (resumeId) => {
+  const confirm = window.confirm("Are you sure you want to delete this resume?")
+  if(confirm){
+    setAllResumes(prev => prev.filter(resume => resume._id !== resumeId))
+  }
+}
+
   useEffect(() => {
     loadAllResumes()
   }, [])
@@ -66,7 +74,7 @@ const editTitle = async (event) => {
               <p className='text-sm group-hover:scale-105 transition-all px-2 text-center style={{color: baseColor}}'>{resume.title}</p>
               <p className='absolute bottom-1 text-[11px] text-slate-400 group-hover:text-slate-500 transition-all text-center px-2 duration-300' style={{solor:baseColor+'90'}} >Updated on {new Date(resume.updatedAt).toLocaleDateString()}</p>
               <div onClick={(e)=> e.stopPropagation()} className='absolute top-1 right-1 group-hover:flex items-center hidden'>
-                  <TrashIcon className='size-7 p-1.5 hover:bg-white/50 rounded text-slate-700 transition-colors'/>
+                  <TrashIcon onClick={()=>deleteResume(resume._id)} className='size-7 p-1.5 hover:bg-white/50 rounded text-slate-700 transition-colors'/>
                   <PencilIcon onClick={()=>{setEditResumeId(resume._id); setTitle(resume.title)}} className='size-7 p-1.5 hover:bg-white/50 rounded text-slate-700 transition-colors'/>
               </div>
             </button>
