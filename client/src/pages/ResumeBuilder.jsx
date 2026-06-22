@@ -1,5 +1,6 @@
+import { ArrowLeftIcon } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams,Link } from 'react-router-dom'
 
 const ResumeBuilder = () => {
 
@@ -37,7 +38,9 @@ const ResumeBuilder = () => {
 
   return (
     <div>
-      
+      <div className='max-w-7xl mx-auto px-4 py-6'>
+        <Link to='/app'> <ArrowLeftIcon className="size-4" /> Back to Dashboard </Link>
+      </div>
     </div>
   )
 }
